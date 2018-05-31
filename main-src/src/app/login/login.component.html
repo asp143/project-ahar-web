@@ -1,0 +1,32 @@
+<body>
+  <div class="md-content" layout-padding flex>
+    <div layout-gt-xs="row" layout-align-gt-xs="center start" class="margin">
+      <div flex-gt-xs="30">
+        <md-card tdMediaToggle="gt-xs" [mediaClasses]="['push-top-lg']">
+          <md-card-title>Login</md-card-title>
+          <md-card-subtitle>Sign in via your current corporate account</md-card-subtitle>
+          <md-divider></md-divider>
+          <md-card-content>
+              <form (submit)="onLoginSubmit()" >
+                  
+                  <div class="form-group">
+                    <md-input-container class="fullwidth">
+                      <input mdInput placeholder="Username" type="text" name="username" [(ngModel)]="username" required>
+                    </md-input-container>
+                  </div>
+                  <div class="form-group">
+                    <md-input-container class=fullwidth>
+                      <input mdInput placeholder="Password" type="password" name="password" [(ngModel)]="password" required>
+                    </md-input-container>
+                  </div>
+                  <div class="btnforlr">
+                    <button md-raised-button type="submit" color="primary" value="Login">Login</button>
+                    <a md-raised-button color="accent" routerLink="/register">Register</a>
+                  </div>
+                </form>
+          </md-card-content>
+        </md-card>
+      </div>
+    </div>    
+  </div>
+</body>

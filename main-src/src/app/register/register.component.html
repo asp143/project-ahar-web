@@ -1,0 +1,61 @@
+<body>
+  <div class="md-content" layout-padding flex>
+    <div layout-gt-xs="row" layout-align-gt-xs="center start" class="margin">
+      <div flex-gt-xs="30">
+        <md-card tdMediaToggle="gt-xs" [mediaClasses]="['push-top-lg']">
+          <md-card-title>Register</md-card-title>
+          <md-card-subtitle></md-card-subtitle>
+          <md-divider></md-divider>
+          <md-card-content>
+            <form (submit)="onRegisterSubmit()">
+              <div class="form-group">
+                  <md-input-container class="full-width">
+                      <input mdInput placeholder="Name" type="text" name="name" [(ngModel)]="name" required minlength="4" maxlength="30">
+                  </md-input-container>
+                </div>
+              <div class="form-group">
+                <md-input-container class="full-width">
+                  <input mdInput placeholder="Province" type="text" name="province" [(ngModel)]="province" required>
+                </md-input-container>
+              </div>
+              <div class="form-group">
+                <md-input-container class="full-width">
+                  <input mdInput placeholder="City" type="text" name="city" [(ngModel)]="city" required>
+                </md-input-container>
+              </div>
+              <div class="form-group">
+                <md-input-container class="full-width">
+                  <input mdInput placeholder="Zipcode" type="text" name="zipcode" [(ngModel)]="zipcode" required>
+                </md-input-container>
+              </div>
+              <div class="form-group">
+                <md-input-container class="full-width">
+                  <input mdInput placeholder="Contact" type="text" name="contact" [(ngModel)]="contact" required>
+                </md-input-container>
+              </div>
+              <div class="form-group">
+                <md-input-container class="full-width">
+                  <input mdInput placeholder="Email" type="email" name="email" [(ngModel)]="email" required>
+                </md-input-container>
+              </div>
+              <div class="form-group">
+                <md-input-container class="full-width">
+                  <input mdInput placeholder="Username" type="text" name="username" [(ngModel)]="username" required>
+                </md-input-container>
+              </div>
+              <div class="form-group">
+                <md-input-container class="full-width">
+                  <input mdInput placeholder="Password" type="password" name="password" [(ngModel)]="password" required>
+                </md-input-container>
+              </div>
+              <div class="btnforlr">
+                <button md-raised-button type="submit" color="primary">Submit</button>
+                <a md-raised-button color="accent" routerLink="/login">Login</a>
+              </div>
+            </form>
+          </md-card-content>
+        </md-card>
+      </div>
+    </div>
+  </div>
+</body>

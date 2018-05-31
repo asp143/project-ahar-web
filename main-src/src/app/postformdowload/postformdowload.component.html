@@ -1,0 +1,536 @@
+                        <td-layout>
+  <td-navigation-drawer flex sidenavTitle="CDRRMO" name="City Disaster Risk Reduction Management">
+    <md-nav-list>
+      <a md-list-item routerLink="/">
+        <md-icon>assessment</md-icon>Logs
+      </a>
+      <!--<a md-list-item routerLink="/postform">
+        <md-icon>note</md-icon>Post Form
+      </a>-->
+      <a md-list-item routerLink="/chartreport">
+        <md-icon>equalizert</md-icon>Reports
+      </a>
+      <a md-list-item href="http://localhost:4201/" target="_blank">
+        <md-icon>pin_drop</md-icon>Map
+      </a>
+      <a md-list-item routerLink="/users">
+        <md-icon>people</md-icon>Manage Users
+      </a>
+    </md-nav-list>
+    <div td-navigation-drawer-menu>
+      <md-nav-list>
+        <a md-list-item (click)="onLogoutClick()">
+          <md-icon>exit_to_app</md-icon>Sign Out
+        </a>
+      </md-nav-list>
+    </div>
+  </td-navigation-drawer>
+  <td-layout-nav>
+    <div td-toolbar-content layout="row" layout-align="start center" flex>
+      <button md-icon-button td-menu-button tdLayoutToggle>
+      <md-icon>menu</md-icon>
+    </button>
+      <span [routerLink]="['/logs']" class="cursor-pointer">Project A-HAR</span>
+      <span flex></span>
+      <a md-icon-button mdTooltip="User Manual" href="https://drive.google.com/file/d/0B-FZHYCmesLKa1RCWXZYX1hJR0k/view" target="_blank">
+        <md-icon>chrome_reader_mode</md-icon>
+      </a>
+      <button md-raised-button routerLink='/report'>return</button>
+    </div>
+
+
+    <div class="wrapper">
+      <form >
+        <md-card class="postForm">
+          <div class="row">
+            <div class="col-md-6">
+              <table class="full-width" cellspacing="0">
+                <tr>
+                  <td>
+                    <md-input-container style="width: 90%">
+                      <input mdInput placeholder="PATIENT CODE" type="text" name="code" [(ngModel)]="code">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container style="width: 90%">
+                      <input mdInput placeholder="Accident Code" type="text" name="accidentCode" [(ngModel)]="accidentCode" [readonly]="true">
+                    </md-input-container>
+                  <td>
+                    <md-input-container style="width: 90%" >
+                      <input mdInput [mdDatepicker]="picker" placeholder="Date" name = "date" [(ngModel)]="date">
+                      <button mdSuffix [mdDatepickerToggle]="picker"></button>
+                    </md-input-container>
+                    <md-datepicker #picker></md-datepicker>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-md-6">
+              <table class="full-width" cellspacing="0">
+                <tr>
+                  <td>
+                    <md-input-container style="width: 125%; padding-right: 25%;">
+                      <input mdInput placeholder="NAME OF CALLER" type="text" name="nameofcaller" [(ngModel)]="nameofcaller">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container style="width: 125%; padding-right: 25%;">
+                      <input mdInput placeholder="NAME OF PATIENT" type="text" name="name" [(ngModel)]="name">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-radio-group [(ngModel)]="teamresponder" name = "teamresponder">
+                      <md-radio-button value="ALPHA" >ALPHA</md-radio-button>
+                      <md-radio-button value="BRAVO" >BRAVO</md-radio-button>
+                      <md-radio-button value="CHARLIE" >CHARLIE</md-radio-button>
+                    </md-radio-group>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-md-6">
+              <table class="full-width" cellspacing="0">
+                <caption>EMERGENCY ROUTE TIME RECORD</caption>
+                <tr>
+                  <td>
+                    <label for="">CALL TIME RECEIVED</label>
+                    <md-input-container class="full-width">
+                      <input mdInput type="time" name="callrecieved" [(ngModel)]="callrecieved" ng-model="callrecieved">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <label for="">RESPOND TIME</label>
+                    <md-input-container class="full-width">
+                      <input mdInput type="time" name="respondtime" [(ngModel)]="respondtime" ng-model="respondtime">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <label for="">ARRIVAL TO SCENE</label>
+                    <md-input-container class="full-width">
+                      <input mdInput type="time" name="arrivaltoscene" [(ngModel)]="arrivaltoscene" ng-model="arrivaltoscene">
+                    </md-input-container>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label for="">LEFT THE SCENE</label>
+                    <md-input-container class="full-width">
+                      <input mdInput type="time" name="leftscene" [(ngModel)]="leftscene" ng-model="leftscene">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <label for="">HOSPITAL ARRIVAL</label>
+                    <md-input-container class="full-width">
+                      <input mdInput type="time" name="hospitalarrival" [(ngModel)]="hospitalarrival" ng-model="hospitalarrival">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <label for="">ACDRRMO ARRIVAL</label>
+                    <md-input-container class="full-width">
+                      <input mdInput type="time" name="acdrrmoarrival" [(ngModel)]="acdrrmoarrival" ng-model="acdrrmoarrival">
+                    </md-input-container>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-md-6">
+              <table class="full-width" cellspacing="0">
+                <caption>NATURE OF INCIDENT</caption>
+                <tr>
+                  <td >
+                    <md-checkbox name="vehicularacc" [(ngModel)]="vehicularacc">VEHICULAR ACC</md-checkbox>
+                    <md-checkbox name="pedacc" [(ngModel)]="pedacc">PEDESTRIAN ACC</md-checkbox>
+                    <md-checkbox name="selfacc" [(ngModel)]="selfacc" >SELF ACC</md-checkbox>
+                    <md-checkbox name="medacc" [(ngModel)]="medacc" >MEDICAL</md-checkbox>
+                    <md-checkbox name="maternalacc" [(ngModel)]="maternalacc" >MATERNAL</md-checkbox>
+                    <md-checkbox name="otheracc" [(ngModel)]="otheracc" >OTHER / FIRE</md-checkbox>
+                  </td>
+                </tr>
+                <caption>VEHICULAR INVOLVED</caption>
+                <tr>
+                  <td>
+                    <md-checkbox name="bicycle"  [(ngModel)]="bicycle">BICYCLE</md-checkbox>
+                    <md-checkbox name="tricycle" [(ngModel)]="tricycle">TRICYCLE</md-checkbox>
+                    <md-checkbox name="motorcycle" [(ngModel)]="motorcycle">MOTORCYCLE</md-checkbox>
+                    <md-checkbox name="car" [(ngModel)]="car">CAR</md-checkbox>
+                    <md-checkbox name="suv" [(ngModel)]="suv">SUV</md-checkbox>
+                    <md-checkbox name="van" [(ngModel)]="van">VAN</md-checkbox>
+                    <md-checkbox name="bus" [(ngModel)]="bus">BUS</md-checkbox>
+                    <md-checkbox name="truck" [(ngModel)]="truck">TRUCK</md-checkbox>
+                    <md-checkbox name="puj" [(ngModel)]="puj">PUJ</md-checkbox>
+                    <md-checkbox name="other" [(ngModel)]="other" >OTHER TYPE</md-checkbox>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-md-6">
+              <table class="full-width" cellspacing="0">
+                <tr>
+                  <td>
+                    <md-input-container style="width: 125%">
+                      <input mdInput placeholder="PATIENT'S ADDRESS" type="text" name="address" [(ngModel)]="address">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container style="width: 90%; padding-left: 25%;">
+                      <input mdInput [mdDatepicker]="dobpicker" placeholder="Birthday" name="birthday" [(ngModel)]="birthday">
+                      <button mdSuffix [mdDatepickerToggle]="dobpicker"></button>
+                    </md-input-container>
+                    <md-datepicker #dobpicker></md-datepicker>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-md-6">
+              <table class="full-width" cellspacing="0">
+                <tr>
+                  <td>
+                    <md-input-container style="width: 250%">
+                      <input mdInput placeholder="INCIDENT LOCATION (Barangay or Area)" type="text" name="incidentlocation" [(ngModel)]="incidentlocation">
+                    </md-input-container>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-md-6">
+              <table>
+                <tr>
+                  <th>PATIENT COMPLAINT</th>
+                  <th>PATIENT TRANSPORT CATEGORIES</th>
+                </tr>
+                <tr>
+                  <td>
+                    <md-input-container style="width: 90%" class="complaintInput">
+                      <input mdInput placeholder="" type="text" name="complaint" [(ngModel)]="complaint">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-checkbox name="resuscitation"  [(ngModel)]="resuscitation">1 RESUSCITATION - IN PROGRESS <br/>UNCONSCIOUS, GROSSLY UNSTABLE</md-checkbox>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <!--<md-input-container style="width: 90%" class="complaintInput">
+                      <input mdInput placeholder="" type="text" name="complaint" [(ngModel)]="complaint">
+                    </md-input-container>-->
+                  </td>
+                  <td>
+                    <md-checkbox name="emergency" [(ngModel)]="emergency">2 EMERGENCY - POTENTITALLY LIFE <br/>THREATENING CONDITION</md-checkbox>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <!--<md-input-container style="width: 90%" class="complaintInput">
+                      <input mdInput placeholder="" type="text" name="complaint" [(ngModel)]="complaint">
+                    </md-input-container>-->
+                  </td>
+                  <td>
+                    <md-checkbox name="urgent" [(ngModel)]="urgent">3 URGENT - NON LIFE THREATENING <br/>ACUTE INJURY OR ILLNESS</md-checkbox>
+                  </td>
+                </tr>
+                <tr><td>
+                    <!--<md-input-container style="width: 90%" class="complaintInput">
+                      <input mdInput placeholder="" type="text" name="complaint" [(ngModel)]="complaint">
+                    </md-input-container>-->
+                  </td>
+                  <td>
+                    <md-checkbox name="semiurgent" [(ngModel)]="semiurgent">4 SEMI URGENT - REQUIRED <br/>CONTINUED EVALUATION</md-checkbox>
+                  </td>
+                </tr>
+                <tr>
+                 <td>
+                    <!--<md-input-container style="width: 90%" class="complaintInput">
+                      <input mdInput placeholder="" type="text" name="complaint" [(ngModel)]="complaint">
+                    </md-input-container>-->
+                  </td>
+                  <td>
+                    <md-checkbox name="routine" [(ngModel)]="routine">5 ROUTINE - PT WHO IN THE OPINION <br/>OF MED PRACTITIONER, HOS TO HOS</md-checkbox>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-md-6">
+              <label for="">GLASCOW COMA SCALE</label>
+
+              <table class="full-width" cellspacing="0">
+                <caption>MOTOR</caption>
+                <tr>
+                  <td>
+                    <md-checkbox name="obey" [(ngModel)] ="obey" (change)="compute(obey,6)">6 Obey</md-checkbox>
+                    <md-checkbox name="local" [(ngModel)] ="local" (change)="compute(local,5)">5 Local</md-checkbox>
+                    <md-checkbox name="withdraw" [(ngModel)] ="withdraw" (change)="compute(withdraw,4)">4 Withdraw</md-checkbox>
+                    <md-checkbox name="flex" [(ngModel)] ="flex" (change)="compute(flex,3)">3 Flex</md-checkbox>
+                    <md-checkbox name="extend" [(ngModel)] ="extend" (change)="compute(extend,2)">2 Extend</md-checkbox>
+                    <md-checkbox name="Mnone" [(ngModel)] ="Mnone" (change)="compute(Mnone,1)">1 None</md-checkbox>
+                  </td>
+                </tr>
+                <caption>VERBAL</caption>
+                <tr>
+                  <td>
+                    <md-checkbox name="orient" [(ngModel)] ="orient" (change)="compute(orient,5)">5 Orient</md-checkbox>
+                    <md-checkbox name="confuse" [(ngModel)] ="confuse" (change)="compute(confuse,4)">4 Confuse</md-checkbox>
+                    <md-checkbox name="inaprop" [(ngModel)] ="inaprop" (change)="compute(inaprop,3)">3 Inaprop</md-checkbox>
+                    <md-checkbox name="incomp" [(ngModel)] ="incomp" (change)="compute(incomp,2)">2 Incomp</md-checkbox>
+                    <md-checkbox name="Vnone" [(ngModel)] ="Vnone" (change)="compute(Vnone,1)">1 None</md-checkbox>
+                  </td>
+                </tr>
+                <caption>EYE</caption>
+                <tr>
+                  <td>
+                    <md-checkbox name="spont" [(ngModel)] ="spont" (change)="compute(spont,4)" >4 Spont</md-checkbox>
+                    <md-checkbox name="verbal" [(ngModel)] ="verbal" (change)="compute(verbal,3)" >3 Verbal</md-checkbox>
+                    <md-checkbox name="pain" [(ngModel)] ="pain" (change)="compute(pain,2)" >2 Pain</md-checkbox>
+                    <md-checkbox name="Enone" [(ngModel)] ="Enone" (change)="compute(Enone,1)" >1 None</md-checkbox>
+                    <br/>
+                    <md-input-container style="width: 40%">
+                      <input mdInput placeholder="Total" type="text" value = "total" name ="total" [(ngModel)] = "total">
+                    </md-input-container>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-md-6">
+              <table class="full-width" cellspacing="0">
+                <caption>SKIN COLOR</caption>
+                <tr>
+                  <td>
+                    <md-checkbox name="normal" [(ngModel)] ="normal" >Normal</md-checkbox>
+                    <md-checkbox name="cyanotic" [(ngModel)] ="cyanotic" >Cyanotic</md-checkbox>
+                    <md-checkbox name="redness" [(ngModel)] ="redness" >Redness</md-checkbox>
+                    <md-checkbox name="pale" [(ngModel)] ="pale" >Pale</md-checkbox>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-md-6">
+              <table class="full-width" cellspacing="0">
+                <caption>SKIN TEMPERATURE</caption>
+                <tr>
+                  <td>
+                    <md-checkbox name="warm" [(ngModel)] ="warm">Warm</md-checkbox>
+                    <md-checkbox name="hot" [(ngModel)] ="hot">Hot</md-checkbox>
+                    <md-checkbox name="cool" [(ngModel)] ="cool" >Cool</md-checkbox>
+                    <md-checkbox name="cold" [(ngModel)] ="cold">Cold</md-checkbox>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-md-6">
+              <table class="full-width" cellspacing="0">
+                <caption>VITAL SIGNS</caption>
+                <tr>
+                  <th>TIME</th>
+                  <th>PULSE</th>
+                  <th>BP</th>
+                  <th>RESP</th>
+                  <th>TEMP</th>
+                  <th>SaO2</th>
+                </tr>
+                <!--<tr>
+                  <td>
+                    <md-input-container style="width: 80%">
+                      <input mdInput type="time">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container style="width: 60%">
+                      <input mdInput placeholder="BPM" type="text">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container style="width: 60%">
+                      <input mdInput placeholder="BP" type="text">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container style="width: 60%">
+                      <input mdInput placeholder="CPM" type="text">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container style="width: 60%">
+                      <input mdInput placeholder="C" type="text">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container style="width: 60%">
+                      <input mdInput placeholder="%" type="text">
+                    </md-input-container>
+                  </td>
+                </tr>-->
+                <!--<tr>
+                  <td>
+                    <md-input-container style="width: 80%">
+                      <input mdInput type="time">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container style="width: 60%">
+                      <input mdInput placeholder="BPM" type="text">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container style="width: 60%">
+                      <input mdInput placeholder="BP" type="text">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container style="width: 60%">
+                      <input mdInput placeholder="CPM" type="text">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container style="width: 60%">
+                      <input mdInput placeholder="C" type="text">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container style="width: 60%">
+                      <input mdInput placeholder="%" type="text">
+                    </md-input-container>
+                  </td>
+                </tr>-->
+                <tr>
+                  <td>
+                    <md-input-container style="width: 80%">
+                      <input mdInput type="time" name="vtime" [(ngModel)]="vtime">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container style="width: 60%">
+                      <input mdInput placeholder="BPM" type="text" name="vpulse" [(ngModel)]="vpulse">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container style="width: 60%">
+                      <input mdInput placeholder="BP" type="text" name="vbp" [(ngModel)]="vbp">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container style="width: 60%">
+                      <input mdInput placeholder="CPM" type="text" name="vresp" [(ngModel)]="vresp">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container style="width: 60%">
+                      <input mdInput placeholder="Temp" type="text" name="vtemp" [(ngModel)]="vtemp">
+                    </md-input-container>
+                  </td>
+                  <td>
+                    <md-input-container style="width: 60%">
+                      <input mdInput placeholder="%" type="text" name="vsao" [(ngModel)]="vsao">
+                    </md-input-container>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-md-6">
+              <table cellspacing="0">
+                <caption>LEVEL OF CONCIOUSNESS</caption>
+                <tr>
+                  <td>
+                    <md-checkbox name = "a" [(ngModel)]="a" >A</md-checkbox>
+                    <md-checkbox name = "v" [(ngModel)]="v" >V</md-checkbox>
+                    <md-checkbox name = "p" [(ngModel)]="p" >P</md-checkbox>
+                    <md-checkbox name = "u" [(ngModel)]="u" >U</md-checkbox>
+                  </td>
+                </tr>
+                <!--<tr>
+                  <td>
+                    <md-checkbox>A</md-checkbox>
+                    <md-checkbox>V</md-checkbox>
+                    <md-checkbox>P</md-checkbox>
+                    <md-checkbox>U</md-checkbox>
+                  </td>
+                </tr>-->
+                <!--<tr>
+                  <td>
+                    <md-checkbox>A</md-checkbox>
+                    <md-checkbox>V</md-checkbox>
+                    <md-checkbox>P</md-checkbox>
+                    <md-checkbox>U</md-checkbox>
+                  </td>
+                </tr>-->
+                <tr>
+                  <td>
+                    <label>AIRWAY: </label>
+                    <md-checkbox name = "clear" [(ngModel)]="clear" >Clear</md-checkbox>
+                    <md-checkbox name = "obstructed" [(ngModel)]="obstructed" >Obstructed</md-checkbox>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>O2 Supply: </label>
+                    <md-checkbox name = "roomair" [(ngModel)]="roomair" >Room Air</md-checkbox>
+                    <md-checkbox name = "oxygenG" [(ngModel)]="oxygenG" >Oxygen Given</md-checkbox>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label for="">BREATHING: </label>
+                    <md-checkbox name = "Bnormal" [(ngModel)]="Bnormal">Normal</md-checkbox>
+                    <md-checkbox name = "shallow" [(ngModel)]="shallow">Shallow</md-checkbox>
+                    <md-checkbox name = "rapid" [(ngModel)]="rapid" >Rapid</md-checkbox>
+                    <md-checkbox name = "labored" [(ngModel)]="labored" >Labored</md-checkbox>
+                    <md-checkbox name = "absent" [(ngModel)]="absent" >Absent</md-checkbox>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label for="">CAP REF: </label>
+                    <md-checkbox name = "L_twosecs" [(ngModel)]="L_twosecs" > < 2 Seconds</md-checkbox>
+                        <md-checkbox name = "G_twosecs" [(ngModel)]="G_twosecs" >2-4 Seconds</md-checkbox>
+                        <md-checkbox name = "G_foursecs" [(ngModel)]="G_foursecs" >> 4 seconds</md-checkbox>
+                        <md-checkbox name = "capAbsent" [(ngModel)]="capAbsent" >Absent</md-checkbox>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label for="">BLOOD SUGAR</label>
+                    <md-input-container style="width: 40%">
+                      <input mdInput placeholder="mmol/L" type="text" name="bloodsugar" [(ngModel)]="bloodsugar">
+                    </md-input-container>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <md-divider></md-divider>
+          <br/>
+          <md-card-footer layout-align="center center">
+            <div style="margin: auto; padding-top:5%; padding-bottom:1%" layout-align="center center" layout="row">
+              <button md-raised-button type="button" color="primary" layout-align="center center"
+              (click)="onPostFormSubmit()"  routerLink="/">Save</button>
+            </div>
+          </md-card-footer>
+        </md-card>
+
+
+      </form>
+    </div>
+    <td-layout-footer>
+      <div layout="row" layout-align="start center">
+        <span class="md-caption">Copyright &copy; 2017 Project AHAR. All rights reserved</span>
+        <span flex></span>
+      </div>
+    </td-layout-footer>
+  </td-layout-nav>
+</td-layout>
+
+

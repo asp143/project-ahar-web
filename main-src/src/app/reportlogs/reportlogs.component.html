@@ -1,0 +1,88 @@
+<td-layout>
+  <td-navigation-drawer flex sidenavTitle="CDRRMO" name="City Disaster Risk Reduction Management">
+    <md-nav-list>
+      <a md-list-item routerLink="/">
+        <md-icon>assessment</md-icon>Logs
+      </a>
+      <!--<a md-list-item routerLink="/postform">
+        <md-icon>note</md-icon>Post Form
+      </a>-->
+      <a md-list-item routerLink="/chartreport">
+        <md-icon>equalizert</md-icon>Reports
+      </a>
+      <a md-list-item href="http://localhost:4201/" target="_blank">
+        <md-icon>pin_drop</md-icon>Map
+      </a>
+      <a md-list-item routerLink="/users">
+        <md-icon>people</md-icon>Manage Users
+      </a>
+
+    </md-nav-list>
+    <div td-navigation-drawer-menu>
+      <md-nav-list>
+        <a md-list-item (click)="onLogoutClick()">
+          <md-icon>exit_to_app</md-icon>Sign Out
+        </a>
+      </md-nav-list>
+    </div>
+  </td-navigation-drawer>
+  <td-layout-nav>
+    <div td-toolbar-content layout="row" layout-align="start center" flex>
+      <button md-icon-button td-menu-button tdLayoutToggle>
+          <md-icon>menu</md-icon>
+        </button>
+      <span [routerLink]="['/logs']" class="cursor-pointer">Project A-HAR</span>
+      <span flex></span>
+      <a md-icon-button mdTooltip="User Manual" href="https://drive.google.com/file/d/0B-FZHYCmesLKa1RCWXZYX1hJR0k/view" target="_blank">
+        <md-icon>chrome_reader_mode</md-icon>
+      </a>
+    </div>
+    <div class="wrapper">
+      <md-card style="height: 1000px">
+        <md-card-title>Report logs for Anti-Hit and Run Vehicular Incident</md-card-title>
+        <md-divider></md-divider>
+        <br/>
+        <button md-raised-button routerLink='/'>return</button>
+        <md-input-container style="width: 80%; padding-left: 25%">
+          <input mdInput placeholder="Search Name" #search class="search" type="text" placeholder="Search..." (keydown.enter)="onSearch(search.value)">
+        </md-input-container>
+        <br/>
+        <div class="container">
+          <div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Patient Code</th>
+                  <th>Patient Name</th>
+                  <th>Accident Code</th>
+                  <th>Location</th>
+                  <th>Team Responder</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let log of logs;let i = index ">
+
+                  <td>{{log.code}}</td>
+                  <td>{{log.patientInfo.Name}}</td>
+                  <td>{{log.accidentID}}</td>
+                  <td>{{log.incidentlocation}}</td>
+                  <td>{{log.teamresponder}}</td>
+                  <td><button md-raised-button color="primary" (click)='onView(i)' routerLink="/postformdownload">View</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </md-card>
+
+    </div>
+    <td-layout-footer>
+      <div layout="row" layout-align="start center">
+        <span class="md-caption">Copyright &copy; 2017 Project AHAR. All rights reserved</span>
+        <span flex></span>
+      </div>
+    </td-layout-footer>
+  </td-layout-nav>
+</td-layout>
+
